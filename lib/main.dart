@@ -1,9 +1,8 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tuticket/inicio_sesion.dart';
+import 'package:tuticket/textfield_personalizado.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -80,32 +79,15 @@ class _SignupFormState extends State<SignupForm> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            TextField(
-              controller: _nombresController,
-              decoration: const InputDecoration(labelText: 'Nombres'),
-            ),
+            TextFieldPersonalizado(labelText: 'Nombres', controller: _nombresController),
             const SizedBox(height: 20.0),
-            TextField(
-              controller: _apellidosController,
-              decoration: const InputDecoration(labelText: 'Apellidos'),
-            ),
+            TextFieldPersonalizado(labelText: 'Apellidos', controller: _apellidosController),
             const SizedBox(height: 20.0),
-            TextField(
-              controller: _numeroController,
-              decoration: const InputDecoration(labelText: 'Número telefónico'),
-            ),
+            TextFieldPersonalizado(labelText: 'Numero', controller: _numeroController),
             const SizedBox(height: 20.0),
-            TextField(
-              controller: _emailController,
-              decoration:
-                  const InputDecoration(labelText: 'Correo electrónico'),
-            ),
+            TextFieldPersonalizado(labelText: 'Correo', controller: _emailController),
             const SizedBox(height: 20.0),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(labelText: 'Contraseña'),
-              obscureText: true,
-            ),
+            TextFieldPersonalizado(labelText: 'Contraseña', controller: _passwordController),
             const SizedBox(height: 30.0),
             ElevatedButton(
               onPressed: () async {

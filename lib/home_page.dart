@@ -18,8 +18,8 @@ class CustomImageLoader extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: Image.network(
           imageUrl,
-          width: 1.0, // Reduce image size (optional)
-          height: 1.0, // Reduce image size (optional)
+          width: 1.0, 
+          height: 1.0, 
           fit: BoxFit.cover,
         ),
       ),
