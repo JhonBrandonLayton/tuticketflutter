@@ -1,31 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/rendering.dart';
 import 'package:tuticket/detalles_evento.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:animate_do/animate_do.dart';
 
-class CustomImageLoader extends StatelessWidget {
+class CustomImageLoader extends StatefulWidget {
   final String imageUrl;
 
   const CustomImageLoader({required this.imageUrl});
 
   @override
+  _CustomImageLoaderState createState() => _CustomImageLoaderState();
+}
+
+
+class _CustomImageLoaderState extends State<CustomImageLoader> {
+  bool isExpanded = false;
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => DetallesEvento(imageUrl)),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Image.network(
-          imageUrl,
-          width: 1.0, 
-          height: 1.0, 
-          fit: BoxFit.cover,
+    
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetallesEvento(widget.imageUrl),
+              ),
+            );
+          },
+          child: GridTile(
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              transform: Matrix4.identity()..scale(isExpanded ? 1.1 : 1.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  widget.imageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
