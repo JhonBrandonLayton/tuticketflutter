@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    # Update Node.js to version 20.x
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20.x'
     # The flutter action needs java so include it
     - uses: actions/setup-java@v1
       with:
@@ -19,6 +24,7 @@ jobs:
     - run: flutter pub get
     # Build for Android AOT
     - run: flutter build aot --target-platform android-arm,android-arm64
+
 
 
 
