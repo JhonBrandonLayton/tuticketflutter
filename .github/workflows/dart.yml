@@ -1,25 +1,24 @@
 name: Flutter
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  build:
+on: push
+jobs: 
+  build-and-test: 
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v1 
+    # The flutter action needs java so include it
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    # Include the flutter action
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'stable'  
+    # Get flutter packages
+    - run: flutter pub get
+    # Build :D 
+    - run: flutter build aot
 
-      - uses: suborbital/flutter@v1  # Use the suborbital/flutter action
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Analyze project source (Flutter specific)
-        run: flutter analyze
 
 
       
