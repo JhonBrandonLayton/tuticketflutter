@@ -1,6 +1,4 @@
-
-
-name: Dart
+name: Flutter
 
 on:
   push:
@@ -15,16 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: suborbital/flutter@v1  # Use the suborbital/flutter action
 
       - name: Install dependencies
         run: flutter pub get
 
-     
-
-     
-      - name: Analyze project source
+      - name: Analyze project source (Flutter specific)
         run: flutter analyze
+
 
       
