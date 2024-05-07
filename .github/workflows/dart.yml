@@ -22,8 +22,6 @@ jobs:
         channel: 'stable'
     # Get flutter packages
     - run: flutter pub get
-    # Build for Android AOT
-    - run: flutter build aot --target-platform android-arm
 
 
 
