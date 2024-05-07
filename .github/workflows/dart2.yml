@@ -1,0 +1,20 @@
+name: Flutter Actions 2
+
+on: [push]
+
+jobs:
+  Explorar-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "El trabajo fue desencadenado automáticamente por un evento ${{ github.event_name }}."
+      - run: echo "Este trabajo se está ejecutando en un servidor ${{ runner.os }} alojado por GitHub."
+      - run: echo "El nombre de la rama es ${{ github.ref }} y el repositorio es ${{ github.repository }}."
+      - name: Verificar código del repositorio
+        uses: actions/checkout@v4
+      - run: echo "El repositorio ${{ github.repository }} ha sido clonado en el servidor."
+      - run: echo "El flujo de trabajo está listo para probar tu código en el servidor."
+      - name: Listar archivos en el repositorio
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "El estado de este trabajo es ${{ job.status }}."
+
